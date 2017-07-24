@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Hero } from './hero';
 
 @Component({
@@ -6,5 +6,5 @@ import { Hero } from './hero';
   templateUrl: './hero-detail.component.html',
 })
 export class HeroDetailComponent {
-  hero: Hero;
+  @Input() hero: Hero;
 }
