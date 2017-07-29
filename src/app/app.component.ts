@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   heroes: Hero[];
   
   getHeroes(): void {
-    this.heroes = this.heroService.getHeroes();
+  	this.heroService.getHeroes().then(heroes => this.heroes = heroes);
   }
 
   onSelect(hero: Hero): void {
