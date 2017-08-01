@@ -28,6 +28,14 @@ export class HeroService {
       .catch(this.handleError);
   }
 
+  create(name: string): Promise<Hero> {
+    return this.http
+      .post(this.heroesUrl, JSON.stringify({name: name}), {headers: this.headers})
+      .toPromise()
+      .then(res => res.json() as Hero)
+      .catch(this.handleError);
+  }
+
   update(hero: Hero): Promise<Hero> {
     const url = `${this.heroesUrl}/${hero.id}`;
     return this.http
@@ -41,7 +49,7 @@ export class HeroService {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
   }
-  
+
 
   // OPTIONAL METHOD
   getHeroesSlowly(): Promise<Hero[]> {
