@@ -8,16 +8,16 @@ import { HEROES } from './mock-heroes';
 
 @Injectable()
 export class HeroService {
-  private heroesUrl = 'http://localhost:8000/api/heroes';  // URL to web api
+  private heroesUrl = '/api/hero';  // URL to web api
   private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http: Http) { }
 
   getHeroes(): Promise<Hero[]> {
-  	this.http.get(this.heroesUrl).toPromise().then(response => console.log(response.json().data))
+  	this.http.get(this.heroesUrl).toPromise().then(response => console.log(response.json()))
     return this.http.get(this.heroesUrl)
                .toPromise()
-               .then(response => response.json().data as Hero[])
+               .then(response => response.json() as Hero[])
                .catch(this.handleError);
   }
 
@@ -25,7 +25,7 @@ export class HeroService {
     const url = `${this.heroesUrl}/${id}`;
     return this.http.get(url)
       .toPromise()
-      .then(response => response.json().data as Hero)
+      .then(response => response.json() as Hero)
       .catch(this.handleError);
   }
 
@@ -33,7 +33,7 @@ export class HeroService {
     return this.http
       .post(this.heroesUrl, JSON.stringify({name: name}), {headers: this.headers})
       .toPromise()
-      .then(res => res.json().data as Hero)
+      .then(res => res.json() as Hero)
       .catch(this.handleError);
   }
 
