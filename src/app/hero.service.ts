@@ -8,7 +8,7 @@ import { HEROES } from './mock-heroes';
 
 @Injectable()
 export class HeroService {
-  private heroesUrl = '/api/hero';  // URL to web api
+  private heroesUrl = '/api/hero/';  // URL to web api
   private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http: Http) { }
